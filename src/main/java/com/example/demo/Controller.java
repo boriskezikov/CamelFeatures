@@ -15,16 +15,15 @@ import java.util.List;
 @RequestMapping(path = "demo/camel")
 public class Controller extends CamelFlowExecutor {
 
-    private static final String camelFlow = "test.flow.camel";
 
-    public Controller(ProducerTemplate producerTemplate, CamelContext camelContext) {
-        super(producerTemplate, camelContext);
+    public Controller(ProducerTemplate producerTemplate) {
+        super(producerTemplate);
     }
 
     @GetMapping
-    public String endPoint(@RequestParam BigInteger number){
+    public String endPoint(@RequestParam BigInteger number) {
         List<BigInteger> request = new ArrayList<>();
         request.add(number);
-        return executeFlowByName(request, camelFlow, String.class);
+        return executeFlowByName(request, RoutesConstants.testCamelRouting.name(), String.class);
     }
 }

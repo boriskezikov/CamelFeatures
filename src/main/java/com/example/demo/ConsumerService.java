@@ -12,4 +12,8 @@ public class ConsumerService {
         String value = into.get(0).toString();
         return value+value;
     }
+
+    public String emptyMessage(){
+        return "This method is deprecated";
+    }
 }

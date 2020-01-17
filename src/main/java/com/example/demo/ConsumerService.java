@@ -8,12 +8,11 @@ import java.util.List;
 @Service
 public class ConsumerService {
 
-    public String receiveMessage(List<BigInteger> into){
-        String value = into.get(0).toString();
-        return value+value;
+    public BigInteger receiveMessage(BigInteger value) {
+        return BigInteger.ONE;
     }
 
-    public String emptyMessage(){
-        return "This method is deprecated";
+    public String emptyMessage() {
+        return null;
     }
 }

@@ -16,8 +16,8 @@ public class CamelFlowExecutor {
         this.producerTemplate = producerTemplate;
     }
 
-    public <T> T executeFlowByName(List<?> params, String routeName, Class<T> clazz){
-        return producerTemplate.requestBody("direct:"+ routeName, params, clazz);
+    public <T> T executeFlowByName(T message, String routeName, Class<T> clazz){
+        return producerTemplate.requestBody("direct:"+ routeName, message, clazz);
     }
 
 }

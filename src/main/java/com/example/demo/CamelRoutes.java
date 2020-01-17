@@ -34,10 +34,13 @@ public class CamelRoutes extends RouteBuilder {
                 .log(LoggingLevel.INFO, LOG, LOG_MESSAGE)
                 .choice()
                 .when(isMessagingActive)
-                .bean(service, "receiveMessage(${in.body})")
+                .process(ex->{
+                    ex.getIn();
+                })
+                    .bean(service, "receiveMessage(${in.body})")
                 .endChoice()
                 .otherwise()
-                .to("direct:" + RoutesConstants.emptyMessageRoute.name())
+                    .to("direct:" + RoutesConstants.emptyMessageRoute.name())
                 .endChoice()
                 .end()
                 .end();
@@ -48,5 +51,6 @@ public class CamelRoutes extends RouteBuilder {
                 .log(LoggingLevel.INFO, LOG, LOG_MESSAGE)
                 .bean(service, "emptyMessage()")
                 .end();
+
     }
 }
